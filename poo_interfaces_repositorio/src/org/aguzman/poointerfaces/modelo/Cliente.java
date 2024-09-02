@@ -1,29 +1,28 @@
-package org.codexdei.poointerfaces.modelo;
+package org.aguzman.poointerfaces.modelo;
 
 import java.util.Objects;
 
 public class Cliente {
-    //Atributos de la clase
     private Integer id;
     private String nombre;
     private String apellido;
-    private static int ultimoId = 0;
-    //Constructores
-    //Constructor vacio
-    public Cliente(){
+    private static int ultimoId;
+
+    public Cliente() {
         this.id = ++ultimoId;
     }
-    //Constructor con parametros
-    public Cliente(String nombre, String apellido){
+
+    public Cliente(String nombre, String apellido) {
         this();
         this.nombre = nombre;
         this.apellido = apellido;
     }
-    //getters and setters
-    public Integer getId(){
-        return this.id;
+
+    public Integer getId() {
+        return id;
     }
-    public void setId(Integer id){
+
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,8 +41,13 @@ public class Cliente {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    //equals
 
+    @Override
+    public String toString() {
+        return "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -55,14 +59,6 @@ public class Cliente {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
-    }
-
-    //toString
-    @Override
-    public String toString(){
-        return "Id=" + this.id + "\t" +
-                "Nombre=" + this.nombre + "\t" +
-                "Apellido=" + this.apellido;
+        return Objects.hash(id);
     }
 }
