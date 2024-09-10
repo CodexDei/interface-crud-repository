@@ -2,20 +2,14 @@ package org.aguzman.poointerfaces.modelo;
 
 import java.util.Objects;
 
-public class Cliente implements Comparable<Cliente>{
-    private Integer id;
+public class Cliente extends BaseEntity implements Comparable<Integer>{
     private String nombre;
     private String apellido;
     private Integer edad;
     private Double sueldo;
-    private static int ultimoId;
-
-    public Cliente() {
-        this.id = ++ultimoId;
-    }
 
     public Cliente(String nombre, String apellido) {
-        this();
+        super();
         this.nombre = nombre;
         this.apellido = apellido;
     }
@@ -25,14 +19,6 @@ public class Cliente implements Comparable<Cliente>{
         this.apellido = apellido;
         this.edad = edad;
         this.sueldo = sueldo;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -77,20 +63,7 @@ public class Cliente implements Comparable<Cliente>{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cliente cliente = (Cliente) o;
-        return Objects.equals(id, cliente.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public int compareTo(Cliente otro) {
-        return Integer.compare(this.edad, otro.edad);
+    public int compareTo(Integer otraEdad) {
+        return this.edad.compareTo(otraEdad);
     }
 }

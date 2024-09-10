@@ -2,13 +2,14 @@ package org.aguzman.poointerfaces;
 
 import org.aguzman.poointerfaces.modelo.Cliente;
 import org.aguzman.poointerfaces.repositorio.*;
+import org.aguzman.poointerfaces.repositorio.lista.ClientListRepository;
 
 import java.util.List;
 
 public class EjemploRepositorio {
     public static void main(String[] args) {
 
-        FullRepositorio repo = new ClienteListRepositorio();
+        FullRepositorio<Cliente> repo = new ClientListRepository();
         repo.crear(new Cliente("Jano", "Pérez"));
         repo.crear(new Cliente("Bea", "González"));
         repo.crear(new Cliente("Luci", "Martínez"));

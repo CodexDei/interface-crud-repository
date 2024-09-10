@@ -62,7 +62,7 @@ public class EjemploGenericos {
         //Hallar el valor maximo
         System.out.println("*****VALOR MAXIMO********");
         Cliente luis = new Cliente("Luis", "Castillo",35,7000000.0);
-        Cliente maye = new Cliente("Marye", "Mora",25,10000000.0);
+        Cliente maye = new Cliente("Marye", "Mora",35,10000000.0);
         Cliente samy = new Cliente("Samy", "Acosta",35,30000000.0);
         maximoCliente(luis,maye,samy);
 
@@ -135,41 +135,45 @@ public class EjemploGenericos {
         return max;
     }
     //Muestra los o el cliente con la mayor edad
-    public static <T extends Cliente & Comparable<Cliente>> void maximoCliente(T a, T b, T c) {
+    public static <T extends Cliente> void maximoCliente(T a, T b, T c) {
         // Identificar el máximo de edad
         T maxEdad = a;
         boolean aEsMax = true, bEsMax = false, cEsMax = false;
 
-        if (b.compareTo(maxEdad) > 0) {
+        if (b.compareTo(maxEdad.getEdad()) > 0) {
             maxEdad = b;
             aEsMax = false;
             bEsMax = true;
-        } else if (b.compareTo(maxEdad) == 0) {
+        } else if (b.compareTo(maxEdad.getEdad()) == 0) {
             bEsMax = true;
         }
 
-        if (c.compareTo(maxEdad) > 0) {
+        if (c.compareTo(maxEdad.getEdad()) > 0) {
             maxEdad = c;
             aEsMax = false;
             bEsMax = false;
             cEsMax = true;
-        } else if (c.compareTo(maxEdad) == 0) {
+        } else if (c.compareTo(maxEdad.getEdad()) == 0) {
             cEsMax = true;
         }
 
         // Verificar si todos tienen la misma edad
         if (aEsMax && bEsMax && cEsMax) {
-            System.out.println("Todos los clientes tienen la misma edad de " + maxEdad.getEdad() + " años.");
+            System.out.println("Los clientes:\n" +
+                    "* " + a.getNombre() + " " + a.getApellido() + "\n" +
+                    "* " + b.getNombre() + " " + b.getApellido() + "\n" +
+                    "* " + c.getNombre() + " " + c.getApellido() + "\n" +
+                    "\nTienen la misma edad de " + maxEdad.getEdad() + " años.");
         } else {
             System.out.println("El/Los cliente(s) con la mayor edad de " + maxEdad.getEdad() + " años es/son:");
             if (aEsMax) {
-                System.out.println("- " + a.getNombre());
+                System.out.println("- " + a.getNombre() + " " + a.getApellido());
             }
             if (bEsMax) {
-                System.out.println("- " + b.getNombre());
+                System.out.println("- " + b.getNombre()+ " " + b.getApellido());
             }
             if (cEsMax) {
-                System.out.println("- " + c.getNombre());
+                System.out.println("- " + c.getNombre() + " " + c.getApellido());
             }
         }
     }

@@ -1,6 +1,6 @@
 package org.aguzman.poointerfaces.modelo;
 
-public class ClientePremium extends Cliente implements Comparable<Cliente>{
+public class ClientePremium extends Cliente{
 
 
     public ClientePremium(String nombre, String apellido) {
@@ -11,8 +11,4 @@ public class ClientePremium extends Cliente implements Comparable<Cliente>{
         super(nombre, apellido, edad, sueldo);
     }
 
-    @Override
-    public int compareTo(Cliente o) {
-        return 0;
-    }
 }
