@@ -1,15 +1,17 @@
 package org.aguzman.poointerfaces.genericsclass;
 
+import static org.aguzman.poointerfaces.genericsclass.TipoAnimal.*;
+
 public class EjemploGenericos {
 
     public static void main(String[] args) {
 
         Camion<Animal> transporteCaballos = new Camion<>(5);
-        transporteCaballos.addCamion(new Animal("Rayo", TipoAnimal.CABALLO));
-        transporteCaballos.addCamion(new Animal("Turbo",TipoAnimal.CABALLO));
-        transporteCaballos.addCamion(new Animal("Princess",TipoAnimal.CABALLO));
-        transporteCaballos.addCamion(new Animal("Maravilla",TipoAnimal.CABALLO));
-        transporteCaballos.addCamion(new Animal("Cucaracha",TipoAnimal.CABALLO));
+        transporteCaballos.addCamion(new Animal("Rayo", CABALLO));
+        transporteCaballos.addCamion(new Animal("Turbo",CABALLO));
+        transporteCaballos.addCamion(new Animal("Princess",CABALLO));
+        transporteCaballos.addCamion(new Animal("Maravilla",CABALLO));
+        transporteCaballos.addCamion(new Animal("Cucaracha",CABALLO));
 
         Camion<Maquinaria> transporteMaquinaria = new Camion(3);
         transporteMaquinaria.addCamion(new Maquinaria("Bulldozer"));

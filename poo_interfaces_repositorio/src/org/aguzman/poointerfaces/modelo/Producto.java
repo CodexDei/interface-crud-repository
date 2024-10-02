@@ -28,7 +28,6 @@ public class Producto extends BaseEntity{
         this.precio = precio;
     }
 
-
     @Override
     public String toString() {
         return  super.toString() +

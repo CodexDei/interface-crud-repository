@@ -16,7 +16,7 @@ public class BaseEntity{
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,4 +37,6 @@ public class BaseEntity{
     public String toString() {
         return "Id=" + id + " ";
     }
+
+
 }

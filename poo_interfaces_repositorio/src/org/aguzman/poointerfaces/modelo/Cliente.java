@@ -15,6 +15,7 @@ public class Cliente extends BaseEntity implements Comparable<Integer>{
     }
 
     public Cliente(String nombre, String apellido, Integer edad, Double sueldo) {
+        super();
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
