@@ -3,7 +3,9 @@ package org.aguzman.poointerfaces;
 import org.aguzman.poointerfaces.modelo.Cliente;
 import org.aguzman.poointerfaces.repositorio.*;
 import org.aguzman.poointerfaces.repositorio.excepciones.AccesoDatoException;
+import org.aguzman.poointerfaces.repositorio.excepciones.EscrituraAccesoDatoException;
 import org.aguzman.poointerfaces.repositorio.excepciones.LecturaAccesoDatoException;
+import org.aguzman.poointerfaces.repositorio.excepciones.RegistroDuplicadoRegistroDatoException;
 import org.aguzman.poointerfaces.repositorio.lista.ClientListRepository;
 
 import java.util.List;
@@ -18,6 +20,15 @@ public class EjemploRepositorio {
             repo.crear(new Cliente("Bea", "González"));
             repo.crear(new Cliente("Luci", "Martínez"));
             repo.crear(new Cliente("Andrés", "Guzmán"));
+
+            Cliente pedro = new Cliente("Pedro", "Picapiedra");
+
+            repo.crear(pedro);
+
+            //Se usaba para probar funcionamiento excepcion escritura cuando hay un id repetido
+            //repo.crear(pedro);
+            //Se usaba para probar funcionamiento excepcion de escritura cuando el registro es null
+            //repo.crear(null);
 
             System.out.println("******** LISTAR ***********");
             List<Cliente> clientes = repo.listar();
@@ -34,9 +45,9 @@ public class EjemploRepositorio {
 
             System.out.println("===== editar =====");
             Cliente beaActualizar = new Cliente("Bea", "Mena");
-            beaActualizar.setId(2);
+            beaActualizar.setId(3);
             repo.editar(beaActualizar);
-            Cliente bea = repo.porId(50);
+            Cliente bea = repo.porId(3);
             System.out.println(bea);
             System.out.println(" ============= ");
             repo.listar("nombre", Direccion.ASC).forEach(System.out::println);
@@ -46,14 +57,24 @@ public class EjemploRepositorio {
             System.out.println("============== Total =====================");
             System.out.println("Total Registros de la Base de datos: " + repo.total());
 
-        }catch (LecturaAccesoDatoException e){
+        } catch (RegistroDuplicadoRegistroDatoException e) {
 
-            System.out.println(e.getMessage());
+            System.err.println("Registro Duplicado: " + e.getMessage());
             e.printStackTrace();
 
-        }catch (AccesoDatoException e){
+        } catch (LecturaAccesoDatoException e){
 
-            System.out.println(e.getMessage());
+            System.err.println("Lectura: " + e.getMessage());
+            e.printStackTrace();
+
+        } catch (EscrituraAccesoDatoException e){
+
+            System.err.println("Escritura: " + e.getMessage());
+            e.printStackTrace();
+
+        } catch (AccesoDatoException e){
+
+            System.err.println("Generica: " + e.getMessage());
             e.printStackTrace();
         }
     }

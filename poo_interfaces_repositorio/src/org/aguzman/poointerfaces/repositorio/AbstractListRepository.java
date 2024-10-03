@@ -1,7 +1,7 @@
 package org.aguzman.poointerfaces.repositorio;
 
 import org.aguzman.poointerfaces.modelo.BaseEntity;
-import org.aguzman.poointerfaces.repositorio.excepciones.LecturaAccesoDatoException;
+import org.aguzman.poointerfaces.repositorio.excepciones.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,18 @@ public abstract class AbstractListRepository<T extends BaseEntity> implements Fu
     }
 
     @Override
-    public void crear(T t) {
+    public void crear(T t) throws EscrituraAccesoDatoException {
+
+        if (t == null){
+
+            throw new EscrituraAccesoDatoException("El registro no puede ser nulo");
+        }
+
+        if (this.dataSource.contains(t)){
+
+            throw new RegistroDuplicadoRegistroDatoException("El id: '" + t.getId() + "' ya existe en el repositorio");
+        }
+
         this.dataSource.add(t);
     }
 
